@@ -21,4 +21,15 @@
             </netmouse_exchange1c>
         </helpers>
     </global>
+    <frontend>
+        <routers>
+            <Netmouse_Exchange1c>
+                <use>standard</use>
+                <args>
+                    <module>Netmouse_Exchange1c</module>
+                    <frontName>1c_exchange</frontName>
+                </args>
+            </Netmouse_Exchange1c>
+        </routers>
+    </frontend>
 </config>
