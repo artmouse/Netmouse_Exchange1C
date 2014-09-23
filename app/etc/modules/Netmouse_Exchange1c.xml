@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Netmouse_Exchange1c>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Netmouse_Exchange1c>
+    </modules>
+</config>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Netmouse_Exchange1c>
+            <version>0.1.0</version>
+        </Netmouse_Exchange1c>
+    </modules>
+    <global>
+        <models>
+            <netmouse_exchange1c>
+                <class>Netmouse_Exchange1c_Model</class>
+                <resourceModel>netmouse_exchange1c_resource</resourceModel>
+            </netmouse_exchange1c>
+            <netmouse_exchange1c_resource>
+                <class>Netmouse_Exchange1c_Model_Resource</class>
+            </netmouse_exchange1c_resource>
+        </models>
+        <helpers>
+            <netmouse_exchange1c>
+                <class>Netmouse_Exchange1c_Helper</class>
+            </netmouse_exchange1c>
+        </helpers>
+    </global>
+</config>
