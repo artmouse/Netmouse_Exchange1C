@@ -19,13 +19,14 @@
  * @copyright   Copyright (c) 2014 Netmouse http://netmouse.com.ua
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Netmouse_Exchange1c_Model_cml2 extends Mage_Core_Model_Abstract
+
+class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
-    protected $_dir = 'var/importexport';
+    protected $_dir = 'var/';
 
     protected function _construct()
     {
-        $this->_init('exchange-one-s/cml');
+        $this->_init('netmouse_exchange1c/cml2');
     }
 
     public function catalogInit()
@@ -42,7 +43,7 @@ class Netmouse_Exchange1c_Model_cml2 extends Mage_Core_Model_Abstract
 
     public function catalogFile($filename)
     {
-        $fh = @fopen(_dir . $filename, 'ab');
+        /**$fh = @fopen(_dir . $filename, 'ab');
         if (false === $fh) {
             return false;
         }
@@ -53,6 +54,20 @@ class Netmouse_Exchange1c_Model_cml2 extends Mage_Core_Model_Abstract
         }
 
         $cl = fclose($fh);
+        return true;*/
+
+        $ar = explode('/', $filename);
+        if (count($ar) > 1) {
+            for ($i = 0; $i <= (count($ar) - 2); $i++) {
+                $temp = implode("/", array_slice($ar, 0, $i + 1));
+                @mkdir($this->_dir . $temp);
+            };
+        };
+
+        $fp = @fopen($this->_dir . $filename, "a");
+        $postdata = file_get_contents("php://input");
+        fputs($fp, $postdata . "\r\n");
+        fclose($fp);
         return true;
     }
 
@@ -60,6 +75,7 @@ class Netmouse_Exchange1c_Model_cml2 extends Mage_Core_Model_Abstract
     {
         if ($filename == 'import.xml') {
             // TODO handle import and progress
+
         } else if ($filename == 'offers.xml') {
             // TODO handle import and progress
         }
@@ -141,5 +157,19 @@ class Netmouse_Exchange1c_Model_cml2 extends Mage_Core_Model_Abstract
             }
         } catch (Exception $e) {
         }
+    }
+
+    /**
+     * Builds path to 1C downloaded files. E.g: we receive
+     * file with name 'import/df3/fl1.jpg' and build path to temp dir,
+     * protected/runtime/fl1.jpg
+     *
+     * @param $fileName
+     * @return string
+     */
+    public function buildPathToTempFile($filename)
+    {
+        $filename = end(explode('/', $filename));
+        return _dir . DIRECTORY_SEPARATOR . $filename;
     }
 }
