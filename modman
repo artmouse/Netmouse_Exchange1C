@@ -1,4 +1,5 @@
 app/code/local/Netmouse/Exchange1c/etc/config.xml app/code/local/Netmouse/Exchange1c/etc/config.xml
 app/code/local/Netmouse/Exchange1c/controllers/IndexController.php app/code/local/Netmouse/Exchange1c/controllers/IndexController.php
 app/code/local/Netmouse/Exchange1c/Helper/Data.php app/code/local/Netmouse/Exchange1c/Helper/Data.php
+app/code/local/Netmouse/Exchange1c/Model/cml2.php app/code/local/Netmouse/Exchange1c/Model/cml2.php
 app/etc/modules/Netmouse_Exchange1c.xml app/etc/modules/Netmouse_Exchange1c.xml
