@@ -9,11 +9,7 @@
         <models>
             <netmouse_exchange1c>
                 <class>Netmouse_Exchange1c_Model</class>
-                <resourceModel>netmouse_exchange1c_resource</resourceModel>
             </netmouse_exchange1c>
-            <netmouse_exchange1c_resource>
-                <class>Netmouse_Exchange1c_Model_Resource</class>
-            </netmouse_exchange1c_resource>
         </models>
         <helpers>
             <netmouse_exchange1c>

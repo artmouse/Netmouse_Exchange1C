@@ -114,17 +114,49 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
 
     public function catalogInitAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        Mage::getModel('netmouse_exchange1c/cml2')->catalogInit();
+
+        echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
+        echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;
     }
 
     public function catalogFileAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        if (!Mage::getModel('netmouse_exchange1c/cml2')->catalogFile(basename($this->getRequest()->getParam('filename')))) {
+            echo "failure" . PHP_EOL;
+            echo "Error save catalog file";
+            return;
+        }
+
+        echo "success";
     }
 
     public function catalogImportAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        $progress = Mage::getModel('netmouse_exchange1c/cml2')->catalogImport(basename($this->getRequest()->getParam('filename')));
+        if (!$progress) {
+            echo "failure" . PHP_EOL;
+            echo "Error import catalog file";
+            return;
+        }
+
+        if ($progress) {
+            // TODO handle progress response
+        }
+
+        echo "success";
     }
 
 
@@ -137,23 +169,57 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
 
     public function saleInitAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        Mage::getModel('netmouse_exchange1c/cml2')->saleInit();
+
+        echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
+        echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;
     }
 
 
     public function saleQueryAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        $xml = Mage::getModel('netmouse_exchange1c/cml2')->saleQuery();
+        if (false === $xml) {
+            echo "failure" . PHP_EOL;
+            echo "Error import sale file";
+            return;
+        }
+
+        header ( "Content-type: text/xml; charset=utf-8" );
+        echo "\xEF\xBB\xBF" . $xml;
+        Mage::getModel('netmouse_exchange1c/cml2')->setSaleLastExportDate();
     }
 
     public function saleSuccessAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        Mage::getModel('netmouse_exchange1c/cml2')->setSaleLastExportDate();
     }
 
     public function saleFileAction()
     {
+        if (!$this->_isAuthorized()) {
+            return;
+        }
 
+        if (!Mage::getModel('netmouse_exchange1c/cml2')->saleFile($this->getRequest()->getParam('filename'))) {
+            echo "failure" . PHP_EOL;
+            echo "Error import sale file";
+            return;
+        }
+
+        echo "success";
     }
 
 }
