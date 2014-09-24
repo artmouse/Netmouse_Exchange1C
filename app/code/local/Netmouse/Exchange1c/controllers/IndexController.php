@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Netmouse
  *
@@ -18,7 +19,6 @@
  * @copyright   Copyright (c) 2014 Netmouse http://netmouse.com.ua
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Action
 
 {
@@ -31,15 +31,19 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             case "catalog":
                 switch ($mode) {
                     case "checkauth":
+                        Mage::log("checkauth", null, 'exchange_1c.log', true);
                         $this->catalogCheckauthAction();
                         break;
                     case "init":
+                        Mage::log("init", null, 'exchange_1c.log', true);
                         $this->catalogInitAction();
                         break;
                     case "file":
+                        Mage::log("file", null, 'exchange_1c.log', true);
                         $this->catalogFileAction();
                         break;
                     case "import":
+                        Mage::log("import", null, 'exchange_1c.log', true);
                         $this->catalogImportAction();
                         break;
                     default:
@@ -193,7 +197,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        header ( "Content-type: text/xml; charset=utf-8" );
+        header("Content-type: text/xml; charset=utf-8");
         echo "\xEF\xBB\xBF" . $xml;
         Mage::getModel('netmouse_exchange1c/cml2')->setSaleLastExportDate();
     }
