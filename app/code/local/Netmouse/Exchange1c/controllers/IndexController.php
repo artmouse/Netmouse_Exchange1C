@@ -200,8 +200,6 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        header("Content-type: text/xml; charset=utf-8");
-        echo "\xEF\xBB\xBF" . $xml;
         Mage::getModel('netmouse_exchange1c/cml2')->setSaleLastExportDate();
     }
 
