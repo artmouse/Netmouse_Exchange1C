@@ -37,10 +37,6 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
                 return false;
             }
         }
-
-        /*if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
-        }*/
         return $dir;
     }
 
@@ -66,11 +62,6 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
             };
         };
 
-        /**$fp = @fopen($this->_getWorkingDir() . $filename, "a");
-         * $postdata = file_get_contents("php://input");
-         * fputs($fp, $postdata . "\r\n");
-         * fclose($fp);*/
-
         $fh = @fopen($this->_getWorkingDir() . $filename, 'ab');
         fwrite($fh, file_get_contents('php://input') . "\r\n");
         fclose($fh);
@@ -80,9 +71,43 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
     public function catalogImport($filename)
     {
+
+
+        $art = "";
+        $cost = 0;
+        $arr = array();
+
+        $xml = new XMLReader();
+        $xml->open($this->_getWorkingDir() . $filename);
+        while ($xml->read()) {
+            switch ($xml->nodeType) {
+                case (XMLREADER::ELEMENT):
+                    if ($xml->localName == "Наименование") {
+                        $xml->read();
+                        $art = $xml->value;
+                        if ($art != "" && $cost != 0) $arr[$art] = $cost;
+                    }
+                    if ($xml->localName == "ЦенаЗаЕдиницу") {
+                        $xml->read();
+                        $cost = $xml->value;
+                        if ($art != "" && $cost != 0) $arr[$art] = $cost;
+                    }
+            }
+        }
+
+// посмотрим что получилось
+        $i = 0;
+        foreach ($arr as $name => $val) {
+            Mage::log($i . " - " .$name . " = " . $val . " грн.", null, 'exchange_1c.log', true);
+            $i++;
+            //echo $name . " = " . $val . "";
+
+            // сюда добавлю код по обновлению цен в БД
+        }
+
+
         if ($filename == 'import.xml') {
             // TODO handle import and progress
-
         } else if ($filename == 'offers.xml') {
             // TODO handle import and progress
         }
