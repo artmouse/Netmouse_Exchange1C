@@ -19,19 +19,34 @@
  * @copyright   Copyright (c) 2014 Netmouse http://netmouse.com.ua
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
-    protected $_dir = 'var/';
+
 
     protected function _construct()
     {
         $this->_init('netmouse_exchange1c/cml2');
     }
 
+    protected function _getWorkingDir()
+    {
+        $dir = Mage::getBaseDir('var') . DS . '1c_exchange' . DS;
+
+        if ((!empty($dir)) && (!is_dir($dir))) {
+            if (!@mkdir($dir, 0755, true)) {
+                return false;
+            }
+        }
+
+        /*if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }*/
+        return $dir;
+    }
+
     public function catalogInit()
     {
-        $tempFiles = glob($this->_dir . '*.*');
+        $tempFiles = glob($this->_getWorkingDir() . '*.*');
         if (false !== $tempFiles) {
             foreach ($tempFiles as $file) {
                 unlink($file);
@@ -43,31 +58,23 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
     public function catalogFile($filename)
     {
-        /**$fh = @fopen(_dir . $filename, 'ab');
-        if (false === $fh) {
-            return false;
-        }
-
-        $wr = fwrite($fh, file_get_contents('php://input'));
-        if (false === $wr) {
-            return false;
-        }
-
-        $cl = fclose($fh);
-        return true;*/
-
         $ar = explode('/', $filename);
         if (count($ar) > 1) {
             for ($i = 0; $i <= (count($ar) - 2); $i++) {
                 $temp = implode("/", array_slice($ar, 0, $i + 1));
-                @mkdir($this->_dir . $temp);
+                @mkdir($this->_getWorkingDir() . $temp);
             };
         };
 
-        $fp = @fopen($this->_dir . $filename, "a");
-        $postdata = file_get_contents("php://input");
-        fputs($fp, $postdata . "\r\n");
-        fclose($fp);
+        /**$fp = @fopen($this->_getWorkingDir() . $filename, "a");
+         * $postdata = file_get_contents("php://input");
+         * fputs($fp, $postdata . "\r\n");
+         * fclose($fp);*/
+
+        $fh = @fopen($this->_getWorkingDir() . $filename, 'ab');
+        fwrite($fh, file_get_contents('php://input') . "\r\n");
+        fclose($fh);
+
         return true;
     }
 
@@ -85,7 +92,7 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
     public function saleInit()
     {
-        $tempFiles = glob($this->_dir . '*.*');
+        $tempFiles = glob($this->_getWorkingDir() . '*.*');
         if (false !== $tempFiles) {
             foreach ($tempFiles as $file) {
                 unlink($file);
@@ -106,11 +113,11 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
     public function saleFile($filename)
     {
-        $fh = fopen($this->_dir . $filename, 'ab');
+        $fh = fopen($this->_getWorkingDir() . $filename, 'ab');
         fwrite($fh, file_get_contents('php://input'));
         fclose($fh);
 
-        $xml = simplexml_load_file($this->_dir . $filename);
+        $xml = simplexml_load_file($this->_getWorkingDir() . $filename);
 
         foreach ($xml->{'Документ'} as $xmlOrder) {
             // TODO
@@ -148,9 +155,9 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
             if ($temp) {
 
-                $loadRole = $userRole->load($user->getRoles($user));
+                //$loadRole = $userRole->load($user->getRoles($user));
 
-                $loginOK = true;
+                //$loginOK = true;
             } else {
 
                 // Invalid login. Authorization failed'
@@ -159,17 +166,4 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
         }
     }
 
-    /**
-     * Builds path to 1C downloaded files. E.g: we receive
-     * file with name 'import/df3/fl1.jpg' and build path to temp dir,
-     * protected/runtime/fl1.jpg
-     *
-     * @param $fileName
-     * @return string
-     */
-    public function buildPathToTempFile($filename)
-    {
-        $filename = end(explode('/', $filename));
-        return _dir . DIRECTORY_SEPARATOR . $filename;
-    }
 }

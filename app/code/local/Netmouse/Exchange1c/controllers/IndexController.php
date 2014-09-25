@@ -34,19 +34,19 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             case "catalog":
                 switch ($mode) {
                     case "checkauth":
-                        //Mage::log("checkauth", null, 'exchange_1c.log', true);
+                        Mage::log("checkauth", null, 'exchange_1c.log', true);
                         $this->catalogCheckauthAction();
                         break;
                     case "init":
-                        //Mage::log("init", null, 'exchange_1c.log', true);
+                        Mage::log("init", null, 'exchange_1c.log', true);
                         $this->catalogInitAction();
                         break;
                     case "file":
-                        //Mage::log("file", null, 'exchange_1c.log', true);
+                        Mage::log("file", null, 'exchange_1c.log', true);
                         $this->catalogFileAction();
                         break;
                     case "import":
-                        //Mage::log("import", null, 'exchange_1c.log', true);
+                        Mage::log("import", null, 'exchange_1c.log', true);
                         $this->catalogImportAction();
                         break;
                     default:
