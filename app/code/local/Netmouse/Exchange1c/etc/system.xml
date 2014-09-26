@@ -7,7 +7,7 @@
         </netmouse>
     </tabs>
     <sections>
-        <netmouse_exchange1c translate='label' module='netmouse_exchange1c'>
+        <exchange1c translate='label' module='netmouse_exchange1c'>
             <label>Обмен с 1С:Предприятие</label>
             <tab>netmouse</tab>
             <frontend_type>text</frontend_type>
@@ -63,6 +63,6 @@
                     </fields>
                 </logging>
             </groups>
-        </netmouse_exchange1c>
+        </exchange1c>
     </sections>
 </config>
