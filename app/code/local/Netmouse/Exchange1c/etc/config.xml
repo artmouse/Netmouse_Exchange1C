@@ -11,6 +11,17 @@
                 <class>Netmouse_Exchange1c_Model</class>
             </netmouse_exchange1c>
         </models>
+        <resources>
+            <exchange1c_setup>
+                <setup>
+                    <module>Netmouse_Exchange1c</module>
+                    <class>Netmouse_Exchange1c_Model_Resource_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </exchange1c_setup>
+        </resources>
         <helpers>
             <netmouse_exchange1c>
                 <class>Netmouse_Exchange1c_Helper</class>

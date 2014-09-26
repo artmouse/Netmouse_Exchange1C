@@ -21,7 +21,6 @@
  */
 class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
-
     protected function _construct()
     {
         $this->_init('netmouse_exchange1c/cml2');
@@ -39,7 +38,18 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
         return $dir;
     }
 
-
+    /**
+     * loading xml file to $this->xml variable
+     * uses simple xml extension
+     * @param type $filename
+     * @return boolean
+     */
+    protected function _readXmlFile($filename)
+    {
+        if (file_exists($this->_getWorkingDir() . $filename) && is_file($this->_getWorkingDir() . $filename))
+            return simplexml_load_file($this->_getWorkingDir() . $filename);
+        return false;
+    }
 
     public function catalogInit()
     {
@@ -70,46 +80,27 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
         return true;
     }
 
-    public function catalogImport($filename)
+    public function catalogImport($filename, $parent_id = 0)
     {
-        $art = "";
-        $cost = 0;
-        $arr = array();
+        $category = array();
+        $xml = $this->_readXmlFile($filename);
 
-        $xml = new XMLReader();
-        $xml->open($this->_getWorkingDir() . $filename);
-        while ($xml->read()) {
-            switch ($xml->nodeType) {
-                case (XMLREADER::ELEMENT):
-                    if ($xml->localName == "Наименование") {
-                        $xml->read();
-                        $art = $xml->value;
-                        if ($art != "" && $cost != 0) $arr[$art] = $cost;
-                    }
-                    if ($xml->localName == "ЦенаЗаЕдиницу") {
-                        $xml->read();
-                        $cost = $xml->value;
-                        if ($art != "" && $cost != 0) $arr[$art] = $cost;
-                    }
-            }
-        }
-
-// посмотрим что получилось
-        $i = 0;
-        foreach ($arr as $name => $val) {
-            Mage::log($i . " - " .$name . " = " . $val . " грн.", null, 'exchange_1c.log', true);
-            $i++;
-            //echo $name . " = " . $val . "";
-
-            // сюда добавлю код по обновлению цен в БД
-        }
-
-
-        if ($filename == 'import.xml') {
-            // TODO handle import and progress
-        } else if ($filename == 'offers.xml') {
-            // TODO handle import and progress
-        }
+        $test = $this->groups_create($xml->Классификатор, $category, 0);
+        Mage::log($test, null, 'exchange_1c.log', true);
+        /**$count = count($xml->Классификатор->Группы->Группа);
+         * Mage::log($count, null, 'exchange_1c.log', true);
+         * //Mage::log($xml, null, 'exchange_1c.log', true);
+         * if(isset($xml->Классификатор->Группы->Группа))
+         * foreach($xml->Классификатор->Группы->Группа as $category)
+         * {
+         * //Mage::log($category->Наименование . "  " . $category->Ид, null, 'exchange_1c.log', true);
+         * }
+         *
+         * if ($filename == 'import.xml') {
+         * // TODO handle import and progress
+         * } else if ($filename == 'offers.xml') {
+         * // TODO handle import and progress
+         * }*/
 
         return true;
     }
@@ -188,6 +179,30 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
             }
         } catch (Exception $e) {
         }
+    }
+
+    # Обход дерева групп полученных из 1С
+    /**
+     * @param $xml
+     * @param $category
+     * @param $owner
+     * @return mixed
+     */
+    public function groups_create($xml, $category, $owner)
+    {
+
+        if (!isset($xml->Группы)) {
+            return $category;
+        }
+        foreach ($xml->Группы->Группа as $category_data) {
+            $name = (string)$category_data->Наименование;
+            $cat_id = (string)$category_data->Ид;
+            $category [$cat_id] ['name'] = $name;
+            $category [$cat_id] ['owner'] = $owner;
+            $category [$cat_id] ['category_id'] = $cat_id;
+            $category = $this->groups_create($category_data, $category, $category [$cat_id] ['category_id']);
+        }
+        return $category;
     }
 
 }

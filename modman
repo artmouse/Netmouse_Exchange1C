@@ -5,6 +5,7 @@ app/code/local/Netmouse/Exchange1c/controllers/IndexController.php app/code/loca
 app/code/local/Netmouse/Exchange1c/Helper/Data.php app/code/local/Netmouse/Exchange1c/Helper/Data.php
 app/code/local/Netmouse/Exchange1c/Model/Import.php app/code/local/Netmouse/Exchange1c/Model/Import.php
 app/code/local/Netmouse/Exchange1c/Model/Cml2.php app/code/local/Netmouse/Exchange1c/Model/Cml2.php
+app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php
 app/code/local/Netmouse/Exchange1c/Model/Export.php app/code/local/Netmouse/Exchange1c/Model/Export.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Configurable.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Configurable.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Bundle.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Bundle.php
@@ -14,4 +15,5 @@ app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Grouped.php 
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php
+app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php
 app/etc/modules/Netmouse_Exchange1c.xml app/etc/modules/Netmouse_Exchange1c.xml
