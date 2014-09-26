@@ -20,6 +20,17 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
-echo 'Running This Upgrade: '.get_class($this)."\n <br /> \n";
-die("Exit for now");
+$installer = $this;
+$installer->startSetup();
+$this->addAttribute(Mage_Catalog_Model_Category::ENTITY, 'custom_attribute', array(
+    'group'         => 'General',
+    'input'         => 'textarea',
+    'type'          => 'text',
+    'label'         => 'Custom attribute',
+    'backend'       => '',
+    'visible'       => true,
+    'required'      => false,
+    'visible_on_front' => true,
+    'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+));
+$installer->endSetup();
