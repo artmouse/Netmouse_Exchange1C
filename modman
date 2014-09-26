@@ -5,6 +5,7 @@ app/code/local/Netmouse/Exchange1c/controllers/IndexController.php app/code/loca
 app/code/local/Netmouse/Exchange1c/Helper/Data.php app/code/local/Netmouse/Exchange1c/Helper/Data.php
 app/code/local/Netmouse/Exchange1c/Model/Import.php app/code/local/Netmouse/Exchange1c/Model/Import.php
 app/code/local/Netmouse/Exchange1c/Model/Cml2.php app/code/local/Netmouse/Exchange1c/Model/Cml2.php
+app/code/local/Netmouse/Exchange1c/Model/Export.php app/code/local/Netmouse/Exchange1c/Model/Export.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Configurable.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Configurable.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Bundle.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Bundle.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Virtual.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Product/Type/Virtual.php

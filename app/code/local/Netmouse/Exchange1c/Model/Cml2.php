@@ -22,7 +22,6 @@
 class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
 
-
     protected function _construct()
     {
         $this->_init('netmouse_exchange1c/cml2');
@@ -39,6 +38,8 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
         }
         return $dir;
     }
+
+
 
     public function catalogInit()
     {
@@ -71,8 +72,6 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 
     public function catalogImport($filename)
     {
-
-
         $art = "";
         $cost = 0;
         $arr = array();

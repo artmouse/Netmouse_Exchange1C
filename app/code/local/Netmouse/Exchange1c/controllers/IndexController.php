@@ -23,8 +23,6 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
 
 {
 
-    protected $_dir = 'var/';
-
     public function indexAction()
     {
         $type = $this->getRequest()->getParam('type');
@@ -166,7 +164,6 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
         echo "success";
     }
 
-
     public function saleCheckauthAction()
     {
         echo "success" . PHP_EOL;
@@ -185,7 +182,6 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
         echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
         echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;
     }
-
 
     public function saleQueryAction()
     {
