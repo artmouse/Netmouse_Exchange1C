@@ -1,24 +1,12 @@
 <?php
 
 /**
- * Netmouse
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@netmouse.com.ua so we can send you a copy immediately.
- *
- *
- * @category    Netmouse
- * @package     Exchange1c
- * @copyright   Copyright (c) 2014 Netmouse http://netmouse.com.ua
- * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @category   Netmouse
+ * @package    Netmouse_Exchange1c
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ * @author     Netmouse <1c@netmouse.com.ua>
  */
+
 class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
     protected function _construct()
@@ -80,27 +68,21 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
         return true;
     }
 
-    public function catalogImport($filename, $parent_id = 0)
+    public function catalogImport($filename)
     {
         $category = array();
         $xml = $this->_readXmlFile($filename);
 
-        $test = $this->groups_create($xml->Классификатор, $category, 0);
-        Mage::log($test, null, 'exchange_1c.log', true);
-        /**$count = count($xml->Классификатор->Группы->Группа);
-         * Mage::log($count, null, 'exchange_1c.log', true);
-         * //Mage::log($xml, null, 'exchange_1c.log', true);
-         * if(isset($xml->Классификатор->Группы->Группа))
-         * foreach($xml->Классификатор->Группы->Группа as $category)
-         * {
-         * //Mage::log($category->Наименование . "  " . $category->Ид, null, 'exchange_1c.log', true);
-         * }
-         *
-         * if ($filename == 'import.xml') {
-         * // TODO handle import and progress
-         * } else if ($filename == 'offers.xml') {
-         * // TODO handle import and progress
-         * }*/
+        if ($filename == 'import.xml') {
+
+            $test = $this->groups_create($xml->Классификатор, $category, 0);
+            Mage::log($test, null, 'exchange_1c.log', true);
+
+            // TODO handle import and progress
+
+        } else if ($filename == 'offers.xml') {
+            // TODO handle import and progress
+        }
 
         return true;
     }

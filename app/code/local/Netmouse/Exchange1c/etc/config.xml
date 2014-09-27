@@ -1,16 +1,26 @@
 <?xml version="1.0"?>
+<!--
+/**
+* @category   Netmouse
+* @package    Netmouse_Exchange1c
+* @license    http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+* @author     Netmouse <1c@netmouse.com.ua>
+*/
+-->
 <config>
     <modules>
         <Netmouse_Exchange1c>
             <version>0.1.0</version>
         </Netmouse_Exchange1c>
     </modules>
+
     <global>
         <models>
-            <netmouse_exchange1c>
+            <exchange1c>
                 <class>Netmouse_Exchange1c_Model</class>
-            </netmouse_exchange1c>
+            </exchange1c>
         </models>
+
         <resources>
             <exchange1c_setup>
                 <setup>
@@ -22,12 +32,31 @@
                 </connection>
             </exchange1c_setup>
         </resources>
+
         <helpers>
-            <netmouse_exchange1c>
+            <exchange1c>
                 <class>Netmouse_Exchange1c_Helper</class>
-            </netmouse_exchange1c>
+            </exchange1c>
         </helpers>
+
+        <importexport module="importexport">
+            <import_entities>
+                <catalog_category translate="label">
+                    <model_token>exchange1c/import_entity_category</model_token>
+                    <label>Category</label>
+                </catalog_category>
+            </import_entities>
+
+            <import_product_types>
+                <simple>exchange1c/import_entity_product_type_simple</simple>
+                <configurable>exchange1c/import_entity_product_type_configurable</configurable>
+                <virtual>exchange1c/import_entity_product_type_virtual</virtual>
+                <grouped>exchange1c/import_entity_product_type_grouped</grouped>
+                <bundle>exchange1c/import_entity_product_type_bundle</bundle>
+            </import_product_types>
+        </importexport>
     </global>
+
     <frontend>
         <routers>
             <Netmouse_Exchange1c>
@@ -39,4 +68,46 @@
             </Netmouse_Exchange1c>
         </routers>
     </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <netmouse_exchange1c>
+                    <files>
+                        <default>Netmouse_Exchange1c.csv</default>
+                    </files>
+                </netmouse_exchange1c>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <exchange1c>
+            <general>
+                <import_behavior>replace</import_behavior>
+                <partial_indexing>0</partial_indexing>
+                <continue_after_errors>0</continue_after_errors>
+                <error_limit>100</error_limit>
+                <support_nested_arrays>0</support_nested_arrays>
+                <ignore_duplicates>0</ignore_duplicates>
+                <clear_field_on_empty_string>0</clear_field_on_empty_string>
+                <symbol_for_clear_field>###EMPTY###</symbol_for_clear_field>
+            </general>
+            <product>
+                <allow_rename_files>1</allow_rename_files>
+                <status>1</status>
+                <visibility>4</visibility>
+                <weight>0</weight>
+            </product>
+        </exchange1c>
+    </default>
+
+
+    <phpunit>
+        <suite>
+            <modules>
+                <Netmouse_Exchange1c/>
+            </modules>
+        </suite>
+    </phpunit>
 </config>
