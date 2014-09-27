@@ -11,7 +11,7 @@ class Netmouse_Exchange1c_Model_Cml2 extends Mage_Core_Model_Abstract
 {
     protected function _construct()
     {
-        $this->_init('netmouse_exchange1c/cml2');
+        $this->_init('exchange1c/cml2');
     }
 
     protected function _getWorkingDir()
