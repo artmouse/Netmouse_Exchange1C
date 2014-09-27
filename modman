@@ -29,3 +29,5 @@ app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category/Product.php app/
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php
 app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php
 app/etc/modules/Netmouse_Exchange1c.xml app/etc/modules/Netmouse_Exchange1c.xml
+app/locale/en_US/Netmouse_Exchange1c.csv app/locale/en_US/Netmouse_Exchange1c.csv
+app/locale/ru_RU/Netmouse_Exchange1c.csv app/locale/ru_RU/Netmouse_Exchange1c.csv
