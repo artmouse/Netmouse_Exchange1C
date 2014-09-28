@@ -13,6 +13,10 @@ app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Taxclass.p
 app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php
 app/code/local/Netmouse/Exchange1c/Model/Import.php app/code/local/Netmouse/Exchange1c/Model/Import.php
 app/code/local/Netmouse/Exchange1c/Model/Cml2.php app/code/local/Netmouse/Exchange1c/Model/Cml2.php
+app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php
+app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php
+app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php
+app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php
 app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php
 app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php
 app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php

@@ -21,6 +21,19 @@
             </exchange1c>
         </models>
 
+        <exchange1c module="exchange1c">
+            <export_entities>
+                <order translate="label">
+                    <model_token>exchange1c/export_entity_order</model_token>
+                    <label>Category</label>
+                </order>
+                <attribute_option translate="label">
+                    <model_token>exchange1c/export_entity_attribute_option</model_token>
+                    <label>Attribute Option</label>
+                </attribute_option>
+            </export_entities>
+        </exchange1c>
+
         <resources>
             <exchange1c_setup>
                 <setup>
