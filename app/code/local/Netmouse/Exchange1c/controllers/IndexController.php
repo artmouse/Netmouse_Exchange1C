@@ -111,7 +111,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        Mage::getModel('exchange1c/cml2')->catalogInit();
+        Mage::getModel('exchange1c/commerceml')->catalogInit();
 
         echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
         echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;

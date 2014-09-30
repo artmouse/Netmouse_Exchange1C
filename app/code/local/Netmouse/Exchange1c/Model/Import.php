@@ -38,19 +38,19 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
         //Fix for issue #50
         Mage::getSingleton('catalog/product')->getResource()->unsetAttributes();
 
-        $this->setBehavior(Mage::getStoreConfig('fastsimpleimport/general/import_behavior'));
-        $this->setPartialIndexing(Mage::getStoreConfigFlag('fastsimpleimport/general/partial_indexing'));
-        $this->setContinueAfterErrors(Mage::getStoreConfigFlag('fastsimpleimport/general/continue_after_errors'));
-        $this->setErrorLimit(intval(Mage::getStoreConfig('fastsimpleimport/general/error_limit')));
-        $this->setUseNestedArrays(Mage::getStoreConfigFlag('fastsimpleimport/general/support_nested_arrays'));
-        $this->setIgnoreDuplicates(Mage::getStoreConfigFlag('fastsimpleimport/general/ignore_duplicates'));
-        $this->setDropdownAttributes(array_filter(explode(',', Mage::getStoreConfig('fastsimpleimport/product/select_attributes'))));
-        $this->setMultiselectAttributes(array_filter(explode(',', Mage::getStoreConfig('fastsimpleimport/product/multiselect_attributes'))));
-        $this->setAllowRenameFiles(Mage::getStoreConfigFlag('fastsimpleimport/product/allow_rename_files'));
-        $this->setImageAttributes(array_filter(explode(',', Mage::getStoreConfig('fastsimpleimport/product/additional_image_attributes'))));
-        $this->setDisablePreprocessImageData(Mage::getStoreConfigFlag('fastsimpleimport/product/clear_field_on_empty_string'));
-        $this->setUnsetEmptyFields(! Mage::getStoreConfigFlag('fastsimpleimport/general/clear_field_on_empty_string'));
-        $this->setSymbolEmptyFields(Mage::getStoreConfig('fastsimpleimport/general/symbol_for_clear_field'));
+        $this->setBehavior(Mage::getStoreConfig('exchange1c/general/import_behavior'));
+        $this->setPartialIndexing(Mage::getStoreConfigFlag('exchange1c/general/partial_indexing'));
+        $this->setContinueAfterErrors(Mage::getStoreConfigFlag('exchange1c/general/continue_after_errors'));
+        $this->setErrorLimit(intval(Mage::getStoreConfig('exchange1c/general/error_limit')));
+        $this->setUseNestedArrays(Mage::getStoreConfigFlag('exchange1c/general/support_nested_arrays'));
+        $this->setIgnoreDuplicates(Mage::getStoreConfigFlag('exchange1c/general/ignore_duplicates'));
+        $this->setDropdownAttributes(array_filter(explode(',', Mage::getStoreConfig('exchange1c/product/select_attributes'))));
+        $this->setMultiselectAttributes(array_filter(explode(',', Mage::getStoreConfig('exchange1c/product/multiselect_attributes'))));
+        $this->setAllowRenameFiles(Mage::getStoreConfigFlag('exchange1c/product/allow_rename_files'));
+        $this->setImageAttributes(array_filter(explode(',', Mage::getStoreConfig('exchange1c/product/additional_image_attributes'))));
+        $this->setDisablePreprocessImageData(Mage::getStoreConfigFlag('exchange1c/product/clear_field_on_empty_string'));
+        $this->setUnsetEmptyFields(! Mage::getStoreConfigFlag('exchange1c/general/clear_field_on_empty_string'));
+        $this->setSymbolEmptyFields(Mage::getStoreConfig('exchange1c/general/symbol_for_clear_field'));
     }
 
     /**
@@ -59,12 +59,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array       $data
      * @param string|null $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function processProductImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_import_products_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_import_products_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -74,8 +74,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
         $this->setEntity(Mage_Catalog_Model_Product::ENTITY);
         $partialIndexing = $this->getPartialIndexing();
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Product */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_product');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Product */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_product');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setIsDryrun(false);
         $entityAdapter->setErrorLimit($this->getErrorLimit());
@@ -126,12 +126,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array       $data
      * @param string|null $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function dryrunProductImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_dryrun_products_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_dryrun_products_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -140,8 +140,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $this->setEntity(Mage_Catalog_Model_Product::ENTITY);
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Product */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_product');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Product */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_product');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setIsDryRun(true);
         $entityAdapter->setErrorLimit($this->getErrorLimit());
@@ -161,12 +161,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array  $data
      * @param string $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function processCustomerImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_import_customers_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_import_customers_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -177,8 +177,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $this->setEntity('customer');
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Customer */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_customer');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Customer */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_customer');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setIgnoreDuplicates($this->getIgnoreDuplicates());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
@@ -219,7 +219,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
     public function dryrunCustomerImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_dryrun_customers_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_dryrun_customers_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -230,8 +230,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $this->setEntity('customer');
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Customer */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_customer');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Customer */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_customer');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
         $entityAdapter->setUnsetEmptyFields($this->getUnsetEmptyFields());
@@ -248,12 +248,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array  $data
      * @param string $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function processCategoryImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_import_categories_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_import_categories_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -265,8 +265,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
         $this->setEntity(Mage_Catalog_Model_Category::ENTITY);
 
         $partialIndexing = $this->getPartialIndexing();
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Category */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_category');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Category */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_category');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
         $entityAdapter->setIgnoreDuplicates($this->getIgnoreDuplicates());
@@ -310,12 +310,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array       $data
      * @param string|null $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function dryrunCategoryImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_dryrun_categories_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_dryrun_categories_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -326,8 +326,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $this->setEntity(Mage_Catalog_Model_Category::ENTITY);
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Category */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_category');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Category */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_category');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
         $entityAdapter->setUnsetEmptyFields($this->getUnsetEmptyFields());
@@ -344,12 +344,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array  $data
      * @param string $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function processCategoryProductImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_import_categoryproducts_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_import_categoryproducts_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -361,8 +361,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $partialIndexing = $this->getPartialIndexing();
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Category_Product */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_category_product');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Category_Product */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_category_product');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
         $entityAdapter->setIgnoreDuplicates($this->getIgnoreDuplicates());
@@ -401,12 +401,12 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * @param array       $data
      * @param string|null $behavior
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function dryrunCategoryProductImport($data, $behavior = NULL)
     {
         $transport = new Varien_Object(array('import_data' => $data));
-        Mage::dispatchEvent('fastsimpleimport_dryrun_categoryproducts_before', array('import_data' => $transport));
+        Mage::dispatchEvent('exchange1c_dryrun_categoryproducts_before', array('import_data' => $transport));
         $data = $transport->getImportData();
 
         if (!is_null($behavior)) {
@@ -417,8 +417,8 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
 
         $this->setEntity('category_product');
 
-        /** @var $entityAdapter AvS_FastSimpleImport_Model_Import_Entity_Category_Product */
-        $entityAdapter = Mage::getModel('fastsimpleimport/import_entity_category_product');
+        /** @var $entityAdapter Netmouse_Exchange1c_Model_Import_Entity_Category_Product */
+        $entityAdapter = Mage::getModel('exchange1c/import_entity_category_product');
         $entityAdapter->setBehavior($this->getBehavior());
         $entityAdapter->setErrorLimit($this->getErrorLimit());
         $entityAdapter->setUnsetEmptyFields($this->getUnsetEmptyFields());
@@ -433,15 +433,15 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      *
      * @param array $sourceData Array Source Data
      *
-     * @return AvS_FastSimpleImport_Model_ArrayAdapter
+     * @return Netmouse_Exchange1c_Model_ArrayAdapter
      */
     protected function _getSourceAdapter($sourceData)
     {
         if (is_array($sourceData)) {
             if ($this->getUseNestedArrays()) {
-                return Mage::getModel('fastsimpleimport/nestedArrayAdapter', $sourceData);
+                return Mage::getModel('exchange1c/nestedArrayAdapter', $sourceData);
             } else {
-                return Mage::getModel('fastsimpleimport/arrayAdapter', $sourceData);
+                return Mage::getModel('exchange1c/arrayAdapter', $sourceData);
             }
         }
 
@@ -512,7 +512,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * Prepare Indexing of products which are to be deleted;
      * Preparing needed as products don't exist afterwards anymore
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     protected function _prepareDeletedProductsReindex()
     {
@@ -524,7 +524,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      * Partially reindex deleted, newly created and updated products
      * Method must be called seperately
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function reindexImportedProducts()
     {
@@ -537,7 +537,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      *
      * @param string|array $attributeCodes
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function setDropdownAttributes($attributeCodes)
     {
@@ -553,7 +553,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      *
      * @param string|array $attributeCodes
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function setMultiselectAttributes($attributeCodes)
     {
@@ -569,7 +569,7 @@ class Netmouse_Exchange1c_Model_Import extends Mage_ImportExport_Model_Import
      *
      * @param string|array $attributeCodes
      *
-     * @return AvS_FastSimpleImport_Model_Import
+     * @return Netmouse_Exchange1c_Model_Import
      */
     public function setImageAttributes($attributeCodes)
     {

@@ -1,12 +1,10 @@
 <?php
 
 /**
- * Source Adapter for Arrays
- *
- * @category   AvS
- * @package    AvS_FastSimpleImport
+ * @category   Netmouse
+ * @package    Netmouse_Exchange1c
  * @license    http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
- * @author     Andreas von Studnitz <avs@avs-webentwicklung.de>
+ * @author     Netmouse <1c@netmouse.com.ua>
  */
 class Netmouse_Exchange1c_Model_ArrayAdapter implements SeekableIterator
 {

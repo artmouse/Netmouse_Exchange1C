@@ -6,6 +6,6 @@
  * @author     Netmouse <1c@netmouse.com.ua>
  */
 
-class Netmouse_Exchange1c_Model_Import_Entity_Product_Type_Virtual extends AvS_FastSimpleImport_Model_Import_Entity_Product_Type_Simple {
+class Netmouse_Exchange1c_Model_Import_Entity_Product_Type_Virtual extends Netmouse_Exchange1c_Model_Import_Entity_Product_Type_Simple {
 
 }

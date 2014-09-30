@@ -44,6 +44,16 @@
                     <use>core_setup</use>
                 </connection>
             </exchange1c_setup>
+            <exchange1c_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </exchange1c_write>
+            <exchange1c_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </exchange1c_read>
         </resources>
 
         <helpers>

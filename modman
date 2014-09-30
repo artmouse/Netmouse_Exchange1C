@@ -12,12 +12,13 @@ app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Visibility
 app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Taxclass.php app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Taxclass.php
 app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php
 app/code/local/Netmouse/Exchange1c/Model/Import.php app/code/local/Netmouse/Exchange1c/Model/Import.php
-app/code/local/Netmouse/Exchange1c/Model/Cml2.php app/code/local/Netmouse/Exchange1c/Model/Cml2.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php
+app/code/local/Netmouse/Exchange1c/Model/CommerceML.php app/code/local/Netmouse/Exchange1c/Model/CommerceML.php
 app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php
+app/code/local/Netmouse/Exchange1c/Model/tmp.php app/code/local/Netmouse/Exchange1c/Model/tmp.php
 app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php
 app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php
 app/code/local/Netmouse/Exchange1c/Model/Export.php app/code/local/Netmouse/Exchange1c/Model/Export.php
@@ -33,5 +34,7 @@ app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category/Product.php app/
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php
 app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php
 app/etc/modules/Netmouse_Exchange1c.xml app/etc/modules/Netmouse_Exchange1c.xml
+app/Безымянный app/Безымянный
+документ документ
 app/locale/en_US/Netmouse_Exchange1c.csv app/locale/en_US/Netmouse_Exchange1c.csv
 app/locale/ru_RU/Netmouse_Exchange1c.csv app/locale/ru_RU/Netmouse_Exchange1c.csv

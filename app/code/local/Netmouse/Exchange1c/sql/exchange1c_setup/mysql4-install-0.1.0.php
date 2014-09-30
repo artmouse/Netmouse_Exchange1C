@@ -7,17 +7,16 @@
  * @author     Netmouse <1c@netmouse.com.ua>
  */
 
-$installer = $this;
-$installer->startSetup();
-$this->addAttribute(Mage_Catalog_Model_Category::ENTITY, 'custom_attribute', array(
-    'group'         => 'General',
-    'input'         => 'textarea',
-    'type'          => 'text',
-    'label'         => 'Custom attribute',
+$this->startSetup();
+$this->addAttribute('catalog_category', 'ex_1c_id', array(
+    'group'         => 'General Information',
+    'input'         => 'text',
+    'type'          => 'varchar',
+    'label'         => '1C ID',
     'backend'       => '',
     'visible'       => true,
     'required'      => false,
-    'visible_on_front' => true,
+    'visible_on_front' => false,
     'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
 ));
-$installer->endSetup();
+$this->endSetup();

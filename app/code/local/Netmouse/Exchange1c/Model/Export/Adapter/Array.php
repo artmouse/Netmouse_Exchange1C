@@ -1,7 +1,7 @@
 <?php
 
 
-class Netmouse_Exchange1c_Model_Export_Adapter_Array extends MagentoHackathon_FastSimpleExport_Model_Export_Adapter_Abstract
+class Netmouse_Exchange1c_Model_Export_Adapter_Array extends Netmouse_Exchange1c_Model_Export_Adapter_Abstract
 {
     protected  $_content = array();
     public function writeRow(array $rowData)

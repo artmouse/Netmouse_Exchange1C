@@ -20,7 +20,7 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Netmouse_Exchange1c_Model_Resource_Mysql4_Setup extends Mage_Core_Model_Resource_Setup
+class Netmouse_Exchange1c_Model_Resource_Mysql4_Setup extends Mage_Eav_Model_Entity_Setup
 
 {
 
