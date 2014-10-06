@@ -24,6 +24,7 @@ app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php app/code/local/
 app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Abstract.php
+app/code/local/Netmouse/Exchange1c/Model/CommerceML.php app/code/local/Netmouse/Exchange1c/Model/CommerceML.php
 app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/ArrayAdapter.php
 app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php app/code/local/Netmouse/Exchange1c/Model/NestedArrayAdapter.php
 app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php app/code/local/Netmouse/Exchange1c/Model/Resource/Mysql4/Setup.php
@@ -38,15 +39,6 @@ app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category.php app/code/loc
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer/Address.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer/Address.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category/Product.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Category/Product.php
 app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php app/code/local/Netmouse/Exchange1c/Model/Import/Entity/Customer.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/CategoryCollection.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/CategoryCollection.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/ProductCollection.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/ProductCollection.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Product.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Product.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PriceType.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PriceType.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PropertyCollection.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PropertyCollection.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Category.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Category.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Property.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/Property.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PriceTypeCollection.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML/PriceTypeCollection.php
-app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML.php app/code/local/Netmouse/Exchange1c/Model/Processor/CommerceML.php
 app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php app/code/local/Netmouse/Exchange1c/sql/exchange1c_setup/mysql4-install-0.1.0.php
 app/etc/modules/Netmouse_Exchange1c.xml app/etc/modules/Netmouse_Exchange1c.xml
 app/locale/en_US/Netmouse_Exchange1c.csv app/locale/en_US/Netmouse_Exchange1c.csv
