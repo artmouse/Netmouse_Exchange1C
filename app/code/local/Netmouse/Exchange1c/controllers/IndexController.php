@@ -111,7 +111,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        Mage::getModel('exchange1c/commerceml')->catalogInit();
+        Mage::getModel('exchange1c/commerceML')->catalogInit();
 
         echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
         echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;
@@ -123,7 +123,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        if (!Mage::getModel('exchange1c/cml2')->catalogFile(basename($this->getRequest()->getParam('filename')))) {
+        if (!Mage::getModel('exchange1c/commerceML')->catalogFile(basename($this->getRequest()->getParam('filename')))) {
             echo "failure" . PHP_EOL;
             echo "Error save catalog file";
             return;
@@ -139,7 +139,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        $progress = Mage::getModel('exchange1c/cml2')->catalogImport(basename($this->getRequest()->getParam('filename')));
+        $progress = Mage::getModel('exchange1c/commerceML')->addXml('import.xml', 'offers.xml');
         if (!$progress) {
             echo "failure" . PHP_EOL;
             echo "Error import catalog file";
@@ -165,7 +165,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        Mage::getModel('exchange1c/cml2')->saleInit();
+        Mage::getModel('exchange1c/commerceML')->saleInit();
 
         echo "zip=" . $this->_getZipEnabled() . PHP_EOL;
         echo "file_limit=" . $this->_getFileLimit() . PHP_EOL;
@@ -177,14 +177,14 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        $xml = Mage::getModel('exchange1c/cml2')->saleQuery();
+        $xml = Mage::getModel('exchange1c/commerceML')->saleQuery();
         if (false === $xml) {
             echo "failure" . PHP_EOL;
             echo "Error import sale file";
             return;
         }
 
-        Mage::getModel('exchange1c/cml2')->setSaleLastExportDate();
+        Mage::getModel('exchange1c/commerceML')->setSaleLastExportDate();
     }
 
     public function saleSuccessAction()
@@ -193,7 +193,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        Mage::getModel('exchange1c/cml2')->setSaleLastExportDate();
+        Mage::getModel('exchange1c/commerceML')->setSaleLastExportDate();
     }
 
     public function saleFileAction()
@@ -202,7 +202,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        if (!Mage::getModel('exchange1c/cml2')->saleFile($this->getRequest()->getParam('filename'))) {
+        if (!Mage::getModel('exchange1c/commerceML')->saleFile($this->getRequest()->getParam('filename'))) {
             echo "failure" . PHP_EOL;
             echo "Error import sale file";
             return;

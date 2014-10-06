@@ -10,7 +10,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
 {
     protected function _construct()
     {
-        $this->_init('exchange1c/cml2');
+        $this->_init('exchange1c/commerceML');
     }
 
     protected function _getWorkingDir()
@@ -32,30 +32,37 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      * @param string|bool $importXml
      * @param string|bool $offersXml
      */
-    public function addXmls($importXml = false, $offersXml = false)
+    public function addXml($importXml = false, $offersXml = false)
     {
         $buffer = array();
+
         if ($importXml) {
             $importXml = $this->loadXml($importXml);
+
             if ($importXml->Каталог->Товары) {
-                foreach ($importXml->Каталог->Товары->Товар as $product) {
-                    $productId = (string)$product->Ид;
+                foreach($importXml->Каталог->Товары->Товар as $product) {
+                    $productId = (string) $product->Ид;
                     $buffer['products'][$productId]['import'] = $product;
                 }
             }
+
             $this->parseCategories($importXml);
             $this->parseProperties($importXml);
         }
+
         if ($offersXml) {
             $offersXml = $this->loadXml($offersXml);
+
             if ($offersXml->ПакетПредложений->Предложения) {
                 foreach ($offersXml->ПакетПредложений->Предложения->Предложение as $offer) {
-                    $productId = (string)$offer->Ид;
+                    $productId = (string) $offer->Ид;
                     $buffer['products'][$productId]['offer'] = $offer;
                 }
             }
+
             $this->parsePriceTypes($offersXml);
         }
+
         $this->parseProducts($buffer);
     }
 
@@ -65,12 +72,13 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      * @param type $filename
      * @return boolean
      */
+    /**
     protected function _readXmlFile($filename)
     {
         if (file_exists($this->_getWorkingDir() . $filename) && is_file($this->_getWorkingDir() . $filename))
             return simplexml_load_file($this->_getWorkingDir() . $filename);
         return false;
-    }
+    }*/
 
     public function catalogInit()
     {
@@ -101,6 +109,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
         return true;
     }
 
+    /**
     public function catalogImport($filename)
     {
         //$category = array();
@@ -125,7 +134,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
         }
 
         return true;
-    }
+    }*/
 
     public function saleInit()
     {
@@ -203,6 +212,8 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
         }
     }
 
+
+
     # Обход дерева групп полученных из 1С
     /**
      * @param $xml
@@ -210,21 +221,40 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      * @param $owner
      * @return mixed
      */
-    public function get1cGroups($xml, $category, $owner)
-    {
+    /**
+     * public function get1cGroups($xml, $category, $owner)
+     * {
+     *
+     * if (!isset($xml->Группы)) {
+     * return $category;
+     * }
+     * foreach ($xml->Группы->Группа as $category_data) {
+     * $name = (string)$category_data->Наименование;
+     * $cat_id = (string)$category_data->Ид;
+     * $category [$cat_id] ['name'] = $name;
+     * $category [$cat_id] ['owner_id'] = $owner;
+     * $category [$cat_id] ['category_id'] = $cat_id;
+     * $category = $this->get1cGroups($category_data, $category, $category [$cat_id] ['category_id']);
+     * }
+     * return $category;
+     * }
+     */
 
-        if (!isset($xml->Группы)) {
-            return $category;
+
+    /**
+     * Parse products.
+     *
+     * @param array $buffer
+     * @return void
+     */
+    public function parseProducts($buffer)
+    {
+        foreach ($buffer['products'] as $item) {
+            $import = $item['import'];
+            $offer = isset($item['offer']) ? $item['offer'] : null;
+            $product = new Product($import, $offer);
+            $this->collections['product']->add($product);
         }
-        foreach ($xml->Группы->Группа as $category_data) {
-            $name = (string)$category_data->Наименование;
-            $cat_id = (string)$category_data->Ид;
-            $category [$cat_id] ['name'] = $name;
-            $category [$cat_id] ['owner_id'] = $owner;
-            $category [$cat_id] ['category_id'] = $cat_id;
-            $category = $this->get1cGroups($category_data, $category, $category [$cat_id] ['category_id']);
-        }
-        return $category;
     }
 
     /**
@@ -247,6 +277,35 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
             $this->collections['category']->add($category);
             if ($xmlCategory->Группы) {
                 $this->parseCategories($xmlCategory->Группы, $category);
+            }
+        }
+    }
+
+    /**
+     * Parse price types.
+     *
+     * @param SimpleXMLElement $offersXml
+     * @return void
+     */
+    public function parsePriceTypes($offersXml)
+    {
+        if ($offersXml->ПакетПредложений->ТипыЦен) {
+            foreach ($offersXml->ПакетПредложений->ТипыЦен->ТипЦены as $xmlPriceType) {
+                $priceType = new PriceType($xmlPriceType);
+                $this->collections['priceType']->add($priceType);
+            }
+        }
+    }
+    /**
+     * @param SimpleXMLElement $importXml
+     * @return void
+     */
+    public function parseProperties($importXml)
+    {
+        if ($importXml->Классификатор->Свойства) {
+            foreach ($importXml->Классификатор->Свойства->Свойство as $xmlProperty) {
+                $property = new Property($xmlProperty);
+                $this->collections['property']->add($property);
             }
         }
     }
@@ -278,7 +337,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
     }
 
 
-    public function getCategoryTree($name, $PID)
+    public function getCategoryTree($name, $parentCategory)
     {
 
     }
@@ -291,9 +350,9 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function loadXml($xml)
     {
-        return is_file($xml)
-            ? simplexml_load_file($xml)
-            : simplexml_load_string($xml);
+        return is_file($this->_getWorkingDir() . $xml)
+            ? simplexml_load_file($this->_getWorkingDir() . $xml)
+            : simplexml_load_string($this->_getWorkingDir() . $xml);
     }
 
 }
