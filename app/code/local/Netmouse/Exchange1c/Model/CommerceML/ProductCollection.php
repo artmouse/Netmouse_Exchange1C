@@ -1,8 +1,12 @@
-<?php namespace Zenwalker\CommerceML\Model;
+<?php
 
-use Zenwalker\CommerceML\ORM\Collection;
-
-class Netmouse_Exchange1c_Model_CommerceML_ProductCollection extends Collection
+/**
+ * @category   Netmouse
+ * @package    Netmouse_Exchange1c
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ * @author     Netmouse <1c@netmouse.com.ua>
+ */
+class Netmouse_Exchange1c_Model_CommerceML_ProductCollection extends Netmouse_Exchange1c_Model_ORM_Collection
 {
     /**
      * Translate price types id to string.

@@ -1,8 +1,12 @@
-<?php namespace Zenwalker\CommerceML\Model;
+<?php
 
-use Zenwalker\CommerceML\ORM\Model;
-
-class Netmouse_Exchange1c_Model_CommerceML_PriceType extends Model
+/**
+ * @category   Netmouse
+ * @package    Netmouse_Exchange1c
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ * @author     Netmouse <1c@netmouse.com.ua>
+ */
+class Netmouse_Exchange1c_Model_CommerceML_PriceType extends Netmouse_Exchange1c_Model_ORM_Model
 {
     /**
      * @var string
@@ -21,7 +25,7 @@ class Netmouse_Exchange1c_Model_CommerceML_PriceType extends Model
 
     /**
      * @param SimpleXMLElement [$xmlPriceType]
-     * @return \Zenwalker\CommerceML\Model\PriceType
+     * @return Netmouse_Exchange1c_Model_ORM_Model/PriceType
      */
     public function __construct($xmlPriceType = null)
     {

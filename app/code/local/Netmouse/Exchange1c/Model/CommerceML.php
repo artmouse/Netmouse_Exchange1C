@@ -8,9 +8,20 @@
  */
 class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
 {
+
+    protected $collections = array();
+
     protected function _construct()
     {
         $this->_init('exchange1c/commerceML');
+
+        $this->collections = array(
+            'category'  => new Netmouse_Exchange1c_Model_CommerceML_CategoryCollection(),
+            'product'   => new Netmouse_Exchange1c_Model_CommerceML_ProductCollection(),
+            'priceType' => new Netmouse_Exchange1c_Model_CommerceML_PriceTypeCollection(),
+            'property'  => new Netmouse_Exchange1c_Model_CommerceML_PropertyCollection()
+        );
+
     }
 
     protected function _getWorkingDir()
@@ -34,6 +45,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function addXml($importXml = false, $offersXml = false)
     {
+        Mage::log("addXml", null, 'exchange_1c.log', true);
         $buffer = array();
 
         if ($importXml) {
@@ -249,10 +261,11 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function parseProducts($buffer)
     {
+        Mage::log("parceProducts", null, 'exchange_1c.log', true);
         foreach ($buffer['products'] as $item) {
             $import = $item['import'];
             $offer = isset($item['offer']) ? $item['offer'] : null;
-            $product = new Product($import, $offer);
+            $product = new Netmouse_Exchange1c_Model_CommerceML_Product($import, $offer);
             $this->collections['product']->add($product);
         }
     }
@@ -266,6 +279,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function parseCategories($importXml, $parent = null)
     {
+        Mage::log("parceCategories", null, 'exchange_1c.log', true);
         $xmlCategories = ($importXml->Классификатор->Группы)
             ? $importXml->Классификатор->Группы
             : $xmlCategories = $importXml;
@@ -289,9 +303,10 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function parsePriceTypes($offersXml)
     {
+        Mage::log("parcePriceTypes", null, 'exchange_1c.log', true);
         if ($offersXml->ПакетПредложений->ТипыЦен) {
             foreach ($offersXml->ПакетПредложений->ТипыЦен->ТипЦены as $xmlPriceType) {
-                $priceType = new PriceType($xmlPriceType);
+                $priceType = new Netmouse_Exchange1c_Model_CommerceML_PriceType($xmlPriceType);
                 $this->collections['priceType']->add($priceType);
             }
         }
@@ -302,9 +317,10 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
      */
     public function parseProperties($importXml)
     {
+        Mage::log("parceProperties", null, 'exchange_1c.log', true);
         if ($importXml->Классификатор->Свойства) {
             foreach ($importXml->Классификатор->Свойства->Свойство as $xmlProperty) {
-                $property = new Property($xmlProperty);
+                $property = new Netmouse_Exchange1c_Model_CommerceML_Property($xmlProperty);
                 $this->collections['property']->add($property);
             }
         }
@@ -314,12 +330,13 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
     {
 
         /** @var $import AvS_FastSimpleImport_Model_Import */
-        $import = Mage::getModel('fastsimpleimport/import');
+        /**$import = Mage::getModel('fastsimpleimport/import');
         try {
             $import->processCategoryImport($fields);
         } catch (Exception $e) {
             print_r($import->getErrorMessages());
-        }
+        }**/
+        Mage::log("add " . $fields, null, 'exchange_1c.log', true);
 
     }
 
