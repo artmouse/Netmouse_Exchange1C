@@ -139,7 +139,7 @@ class Netmouse_Exchange1c_IndexController extends Mage_Core_Controller_Front_Act
             return;
         }
 
-        $progress = Mage::getModel('exchange1c/commerceML')->addXml('import.xml', 'offers.xml');
+        $progress = Mage::getModel('exchange1c/commerceML')->addXml(basename($this->getRequest()->getParam('filename')));
         if (!$progress) {
             echo "failure" . PHP_EOL;
             echo "Error import catalog file";

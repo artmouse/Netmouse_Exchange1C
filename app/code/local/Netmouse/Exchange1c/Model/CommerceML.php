@@ -270,7 +270,7 @@ class Netmouse_Exchange1c_Model_CommerceML extends Mage_Core_Model_Abstract
             ? $importXml->Классификатор->Группы
             : $xmlCategories = $importXml;
         foreach ($xmlCategories->Группа as $xmlCategory) {
-            $category = new Category($xmlCategory);
+            $category = new NetmouseCategory($xmlCategory);
             if (!is_null($parent)) {
                 $parent->addChild($category);
             }
