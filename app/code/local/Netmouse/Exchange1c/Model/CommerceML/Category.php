@@ -1,8 +1,8 @@
-<?php namespace Zenwalker\CommerceML\Model;
+<?php //namespace Zenwalker\CommerceML\Model;
 
-use Zenwalker\CommerceML\ORM\Model;
+//use Zenwalker\CommerceML\ORM\Model;
 
-class Netmouse_Exchange1c_Model_CommerceML_Category extends Model
+class Netmouse_Exchange1c_Model_CommerceML_Category extends Mage_Core_Model_Abstract
 {
     /**
      * @var string $id

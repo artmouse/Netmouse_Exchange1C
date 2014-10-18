@@ -20,6 +20,8 @@ app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Visibility
 app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Taxclass.php app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Taxclass.php
 app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php app/code/local/Netmouse/Exchange1c/Model/System/Config/Source/Product/Status.php
 app/code/local/Netmouse/Exchange1c/Model/Import.php app/code/local/Netmouse/Exchange1c/Model/Import.php
+app/code/local/Netmouse/Exchange1c/Model/ORM/Collection.php app/code/local/Netmouse/Exchange1c/Model/ORM/Collection.php
+app/code/local/Netmouse/Exchange1c/Model/ORM/Model.php app/code/local/Netmouse/Exchange1c/Model/ORM/Model.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Order.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php app/code/local/Netmouse/Exchange1c/Model/Export/Entity/Attribute/Option.php
 app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php app/code/local/Netmouse/Exchange1c/Model/Export/Adapter/Array.php

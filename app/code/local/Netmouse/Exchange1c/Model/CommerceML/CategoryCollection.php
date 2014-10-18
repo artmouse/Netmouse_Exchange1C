@@ -1,4 +1,4 @@
-<?php namespace Zenwalker\CommerceML\Model;
+<?php //namespace Zenwalker\CommerceML\Model;
 
 use Zenwalker\CommerceML\ORM\Collection;
 
